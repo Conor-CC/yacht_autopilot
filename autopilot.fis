@@ -1,8 +1,8 @@
 [System]
-Name='Untitled'
+Name='autopilot'
 Type='mamdani'
 Version=2.0
-NumInputs=1
+NumInputs=4
 NumOutputs=1
 NumRules=3
 AndMethod='min'
@@ -12,22 +12,46 @@ AggMethod='max'
 DefuzzMethod='centroid'
 
 [Input1]
-Name='input1'
+Name='courseOverGround'
 Range=[-180 180]
 NumMFs=3
-MF1='headingTooLow':'trimf',[-330 -180 -30]
-MF2='onGoodCourse':'trimf',[-150 0 150]
-MF3='headingTooHigh':'trimf',[30 180 330]
+MF1='headingTooLow':'pimf',[-180 -180 -50 0]
+MF2='onGoodCourse':'pimf',[-50 -3 3 50]
+MF3='headingTooHigh':'pimf',[0 50 180 180]
+
+[Input2]
+Name='tidalOffset'
+Range=[0 1]
+NumMFs=3
+MF1='mf1':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='mf2':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='mf3':'trimf',[0.583333333333333 1 1.41666666666667]
+
+[Input3]
+Name='windOffset'
+Range=[0 1]
+NumMFs=3
+MF1='mf1':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='mf2':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='mf3':'trimf',[0.583333333333333 1 1.41666666666667]
+
+[Input4]
+Name='speedOverGround'
+Range=[0 1]
+NumMFs=3
+MF1='mf1':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='mf2':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='mf3':'trimf',[0.583333333333333 1 1.41666666666667]
 
 [Output1]
 Name='output1'
 Range=[-60 60]
 NumMFs=3
-MF1='steerToStarboard':'trimf',[-110 -60 -10]
-MF2='noChange':'trimf',[-50 0 50]
-MF3='steerToPort':'trimf',[10 60 110]
+MF1='trimRudderToPort':'pimf',[-60 -60 -30 -3]
+MF2='noChange':'pimf',[-30 -3 3 30]
+MF3='trimRudderToStarboard':'pimf',[3 30 60 60]
 
 [Rules]
-1, 1 (1) : 1
-2, 2 (1) : 1
-3, 3 (1) : 1
+1 0 0 0, 3 (1) : 1
+2 0 0 0, 2 (1) : 1
+3 0 0 0, 1 (1) : 1
