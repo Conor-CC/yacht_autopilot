@@ -1,0 +1,33 @@
+[System]
+Name='Untitled'
+Type='mamdani'
+Version=2.0
+NumInputs=1
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='input1'
+Range=[-180 180]
+NumMFs=3
+MF1='headingTooLow':'trimf',[-330 -180 -30]
+MF2='onGoodCourse':'trimf',[-150 0 150]
+MF3='headingTooHigh':'trimf',[30 180 330]
+
+[Output1]
+Name='output1'
+Range=[-60 60]
+NumMFs=3
+MF1='steerToStarboard':'trimf',[-110 -60 -10]
+MF2='noChange':'trimf',[-50 0 50]
+MF3='steerToPort':'trimf',[10 60 110]
+
+[Rules]
+1, 1 (1) : 1
+2, 2 (1) : 1
+3, 3 (1) : 1
