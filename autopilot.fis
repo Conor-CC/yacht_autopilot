@@ -2,9 +2,9 @@
 Name='autopilot'
 Type='mamdani'
 Version=2.0
-NumInputs=2
+NumInputs=3
 NumOutputs=1
-NumRules=3
+NumRules=14
 AndMethod='min'
 OrMethod='max'
 ImpMethod='min'
@@ -12,30 +12,49 @@ AggMethod='max'
 DefuzzMethod='centroid'
 
 [Input1]
-Name='courseOverGround'
+Name='Course_Over_Ground'
 Range=[-180 180]
 NumMFs=3
-MF1='headingTooLow':'pimf',[-180 -180 -50 0]
-MF2='onGoodCourse':'pimf',[-50 -3 3 50]
-MF3='headingTooHigh':'pimf',[0 50 180 180]
+MF1='Heading_Too_Low':'pimf',[-180 -180 -50 0]
+MF2='On_Good_Course':'pimf',[-50 -3 3 50]
+MF3='Heading_Too_High':'pimf',[0 50 180 180]
 
 [Input2]
-Name='speedOverGround'
-Range=[0 1]
+Name='Speed_Over_Ground'
+Range=[0 100]
 NumMFs=3
-MF1='mf1':'trimf',[-0.416666666666667 0 0.416666666666667]
-MF2='mf2':'trimf',[0.0833333333333333 0.5 0.916666666666667]
-MF3='mf3':'trimf',[0.583333333333333 1 1.41666666666667]
+MF1='Slow':'pimf',[0 0 2 18]
+MF2='Neutral':'pimf',[10 18 22 30]
+MF3='Fast':'pimf',[22 40 100 100]
+
+[Input3]
+Name='Environmental_Offset'
+Range=[-90 90]
+NumMFs=3
+MF1='Port':'trimf',[-90 -90 0]
+MF2='Neutral':'trimf',[-18 0 18]
+MF3='Starboard':'trimf',[0 90 90]
 
 [Output1]
-Name='output1'
+Name='output'
 Range=[-60 60]
 NumMFs=3
-MF1='trimRudderToPort':'pimf',[-60 -60 -30 -3]
-MF2='noChange':'pimf',[-30 -3 3 30]
-MF3='trimRudderToStarboard':'pimf',[3 30 60 60]
+MF1='Trim_Rudder_Port':'pimf',[-60 -60 -30 -3]
+MF2='No_Change':'pimf',[-30 -3 3 30]
+MF3='Trim_Rudder_Starboard':'pimf',[3 30 60 60]
 
 [Rules]
-1 0, 3 (1) : 1
-2 0, 2 (1) : 1
-3 0, 1 (1) : 1
+2 0 0, 2 (1) : 1
+1 1 0, 3 (0.33) : 1
+1 2 0, 3 (0.66) : 1
+1 3 0, 3 (1) : 1
+3 1 0, 1 (0.33) : 1
+3 2 0, 1 (0.66) : 1
+3 3 0, 1 (1) : 1
+0 1 1, 3 (0.33) : 1
+0 2 1, 3 (0.66) : 1
+0 3 1, 3 (1) : 1
+0 1 3, 1 (0.33) : 1
+0 2 3, 1 (0.66) : 1
+0 3 3, 1 (1) : 1
+0 0 2, 2 (1) : 1

@@ -1,0 +1,45 @@
+[System]
+Name='tide'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Tidal_Flow'
+Range=[0 20]
+NumMFs=3
+MF1='Weak':'trimf',[0 0 2.5]
+MF2='Moderate':'trimf',[1 3 5]
+MF3='Strong':'trapmf',[3.5 10 20 20]
+
+[Input2]
+Name='Tidal_Direction'
+Range=[-180 180]
+NumMFs=3
+MF1='Port':'trimf',[-180 -90 0]
+MF2='Neutral':'trimf',[-45 0 45]
+MF3='Starboard':'trimf',[0 90 180]
+
+[Output1]
+Name='Tidal_Offset'
+Range=[-90 90]
+NumMFs=3
+MF1='Port':'trimf',[-90 -90 0]
+MF2='Neutral':'trimf',[-18 0 18]
+MF3='Starboard':'trimf',[0 90 90]
+
+[Rules]
+1 1, 1 (0.33) : 1
+2 1, 1 (0.66) : 1
+3 1, 1 (1) : 1
+0 2, 2 (1) : 1
+1 3, 3 (0.33) : 1
+2 3, 3 (0.66) : 1
+3 3, 3 (1) : 1
