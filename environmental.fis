@@ -13,27 +13,27 @@ DefuzzMethod='centroid'
 
 [Input1]
 Name='Tidal_Offset'
-Range=[-90 90]
+Range=[-180 180]
 NumMFs=3
-MF1='Port':'trimf',[-90 -90 0]
-MF2='Neutral':'trimf',[-18 0 18]
-MF3='Starboard':'trimf',[0 90 90]
+MF1='Port':'trimf',[-180 -180 0]
+MF2='Neutral':'trimf',[-36 0 36]
+MF3='Starboard':'trimf',[0 180 180]
 
 [Input2]
 Name='Wind_Offset'
-Range=[-90 90]
+Range=[-180 180]
 NumMFs=3
-MF1='Port':'trimf',[-90 -90 0]
-MF2='Neutral':'trimf',[-18 0 18]
-MF3='Starboard':'trimf',[0 90 90]
+MF1='Port':'trimf',[-180 -180 0]
+MF2='Neutral':'trimf',[-36 0 36]
+MF3='Starboard':'trimf',[0 180 180]
 
 [Output1]
 Name='Environmental_Offset'
-Range=[-90 90]
+Range=[-180 180]
 NumMFs=3
-MF1='Port':'trimf',[-90 -90 0]
-MF2='Neutral':'trimf',[-18 0 18]
-MF3='Starboard':'trimf',[0 90 90]
+MF1='Port':'trimf',[-180 -180 0]
+MF2='Neutral':'trimf',[-36 0 36]
+MF3='Starboard':'trimf',[0 180 180]
 
 [Rules]
 1 0, 1 (1) : 1

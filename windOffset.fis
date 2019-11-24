@@ -14,18 +14,16 @@ DefuzzMethod='centroid'
 [Input1]
 Name='windSpeed'
 Range=[0 70]
-NumMFs=3
-MF1='weakWind':'pimf',[0 0 0 15]
-MF2='moderateWind':'pimf',[5 15 20 30]
-MF3='strongWind':'pimf',[20 35 70 70]
+NumMFs=1
+MF1='weakWind':'sigmf',[-0.705281963095577 11]
 
 [Input2]
 Name='windDirection'
-Range=[0 1]
+Range=[-180 180]
 NumMFs=3
-MF1='mf1':'trimf',[-0.416666666666667 0 0.416666666666667]
-MF2='mf2':'trimf',[0.0833333333333333 0.5 0.916666666666667]
-MF3='mf3':'trimf',[0.583333333333333 1 1.41666666666667]
+MF1='port':'trimf',[-330 -180 -20]
+MF2='on_the_bow':'trimf',[-30 0 30]
+MF3='starboard':'trimf',[20 180 330]
 
 [Output1]
 Name='output1'
