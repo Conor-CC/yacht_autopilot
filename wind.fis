@@ -4,7 +4,7 @@ Type='mamdani'
 Version=2.0
 NumInputs=2
 NumOutputs=1
-NumRules=7
+NumRules=3
 AndMethod='min'
 OrMethod='max'
 ImpMethod='min'
@@ -12,23 +12,21 @@ AggMethod='max'
 DefuzzMethod='centroid'
 
 [Input1]
-Name='Wind_Speed'
-Range=[0 50]
-NumMFs=3
-MF1='Weak':'trimf',[0 0 6.25]
-MF2='Moderate':'trimf',[2.5 7.5 12.5]
-MF3='Strong':'trapmf',[8.75 25 50 50]
+Name='windSpeed'
+Range=[0 70]
+NumMFs=1
+MF1='weak':'sigmf',[-0.7053 18]
 
 [Input2]
-Name='Wind_Direction'
+Name='windDirection'
 Range=[-180 180]
 NumMFs=3
-MF1='Port':'trimf',[-180 -90 0]
-MF2='Neutral':'trimf',[-45 0 45]
-MF3='Starboard':'trimf',[0 90 180]
+MF1='port':'trimf',[-160 -90 -20]
+MF2='on_the_bow':'trimf',[-30 0 30]
+MF3='starboard':'trimf',[20 90 160]
 
 [Output1]
-Name='Wind_Offset'
+Name='windOffset'
 Range=[-180 180]
 NumMFs=3
 MF1='Port':'trimf',[-180 -180 0]
@@ -36,10 +34,6 @@ MF2='Neutral':'trimf',[-36 0 36]
 MF3='Starboard':'trimf',[0 180 180]
 
 [Rules]
-1 1, 1 (0.33) : 1
-2 1, 1 (0.66) : 1
-3 1, 1 (1) : 1
-0 2, 2 (1) : 1
-1 3, 3 (0.33) : 1
-2 3, 3 (0.66) : 1
-3 3, 3 (1) : 1
+1 1, 1 (1) : 1
+1 3, 3 (1) : 1
+1 2, 2 (1) : 1
